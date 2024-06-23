@@ -1,2 +1,2 @@
 # AC-HUD
-standalone dash style hud for Assetto Corsa 
+standalone style hud for Assetto Corsa 
