@@ -1,46 +1,49 @@
-#assetto corsa hud drift specific
-#rpms, gear, speed, tyre wear?, fuel
-
-#appName = "HUD"
 
 import ac
 import acsys
 from third_party.sim_info import *
 
-appName = "Car HUD"
-width, height = 200, 100 # Adjust the size to your needs
+
+
+
+appName = "HUD"
+width, height = 800 , 800 # width and height of the app's window
 
 simInfo = SimInfo()
 
-def acMain(ac_version):
-    global appWindow, speedLabel, rpmLabel
+
+
+def acMain(ac_version):#----------------------------- App window Init
+
+    # Don't forget to put anything you'll need to update later as a global variables
+    global appWindow # <- you'll need to update your window in other functions.
 
     appWindow = ac.newApp(appName)
     ac.setTitle(appWindow, appName)
     ac.setSize(appWindow, width, height)
 
-    # Create labels for speed and RPM
-    speedLabel = ac.addLabel(appWindow, "Speed: 0 km/h")
-    rpmLabel = ac.addLabel(appWindow, "RPM: 0")
-
-    # Position the labels in the app window
-    ac.setPosition(speedLabel, 10, 30)
-    ac.setPosition(rpmLabel, 10, 60)
-
-    # Register the update function
-    ac.addRenderCallback(appWindow, appGL)
+    ac.addRenderCallback(appWindow, appGL) # -> links this app's window to an OpenGL render function
 
     return appName
 
-def appGL(deltaT):
-    # Update the display with the latest data
-    speed = simInfo.physics.speedKmh
-    rpm = simInfo.physics.rpms
 
-    ac.setText(speedLabel, f"Speed: {speed:.1f} km/h")
-    ac.setText(rpmLabel, f"RPM: {rpm:.0f}")
 
-def acUpdate(deltaT):
-    # This can be used for non-OpenGL updates if necessary
+
+
+def appGL(deltaT):#-------------------------------- OpenGL UPDATE
+    """
+    This is where you redraw your openGL graphics
+    if you need to use them .
+    """
+    pass # -> Delete this line if you do something here !
+
+
+
+
+def acUpdate(deltaT):#-------------------------------- AC UPDATE
+    """
+    This is where you update your app window ( != OpenGL graphics )
+    such as : labels , listener , ect ...
+    """
     pass
-
+    # -> Delete this line if you do something here !
