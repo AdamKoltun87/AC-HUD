@@ -1,49 +1,19 @@
+#appName = "HUD"
 
 import ac
 import acsys
-from third_party.sim_info import *
 
+appWindow=0
+speed=0
+rpm=0
 
-
-
-appName = "HUD"
-width, height = 800 , 800 # width and height of the app's window
-
-simInfo = SimInfo()
-
-
-
-def acMain(ac_version):#----------------------------- App window Init
-
-    # Don't forget to put anything you'll need to update later as a global variables
-    global appWindow # <- you'll need to update your window in other functions.
-
-    appWindow = ac.newApp(appName)
-    ac.setTitle(appWindow, appName)
-    ac.setSize(appWindow, width, height)
-
-    ac.addRenderCallback(appWindow, appGL) # -> links this app's window to an OpenGL render function
-
-    return appName
-
-
-
-
-
-def appGL(deltaT):#-------------------------------- OpenGL UPDATE
-    """
-    This is where you redraw your openGL graphics
-    if you need to use them .
-    """
-    pass # -> Delete this line if you do something here !
-
-
-
-
-def acUpdate(deltaT):#-------------------------------- AC UPDATE
-    """
-    This is where you update your app window ( != OpenGL graphics )
-    such as : labels , listener , ect ...
-    """
-    pass
-    # -> Delete this line if you do something here !
+def acMain():
+    global appWindow
+    appWindow=ac.newApp("HUD")
+    ac.setsize(appWindow,200,150)
+    ac.drawBorder(appWindow,0)
+    ac.setBackgroundOpacity(appWindow,0)
+    ac.setBackgroundTexture(appWindow, "apps/python/hud/hudbg.png")
+    speed = (appWindow,22,100,"km/h")
+    rpm = (appWindow,22,100,"rpm")
+    return "HUD"
